@@ -4,6 +4,7 @@ import './Card.css';
 
 const Card = props=> {
     const {unsolvedBoard} = props.boards;
+    console.log(unsolvedBoard);
     const unsolvedRows = unsolvedBoard.map((rowNum, i)=>{
         return <Row row={i} values={rowNum} handleInput={input=>props.handleInput(input)} boards={props.boards}/>;
     })
