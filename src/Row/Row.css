@@ -1,0 +1,15 @@
+.board-row:nth-child(3) .square, .board-row:nth-child(6) .square{
+    border-bottom: 2px solid black;
+}
+
+.board-row:nth-child(4) .square, .board-row:nth-child(7) .square{
+    border-top: 2px solid black; 
+}
+
+.board-row .square:nth-child(3), .board-row .square:nth-child(6){
+    border-right: 2px solid black;
+}
+
+.board-row .square:nth-child(4), .board-row .square:nth-child(7){
+    border-left: 2px solid black;
+}

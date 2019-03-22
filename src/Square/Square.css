@@ -1,0 +1,72 @@
+.square {
+  background: #fff;
+  border: 2px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 40px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 50px;
+}
+
+.input-square {
+  max-width: 80%;
+  height: 80%;
+  font-size: 24px;
+  text-align: center;
+  border: none;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.correct-input-square {
+  background: #bdf3bd;
+  color: #187318;
+  max-width: 80%;
+  height: 80%;
+  font-size: 24px;
+  text-align: center;
+  border: none;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.incorrect-input-square {
+  background: #ec5b5b;
+  color: #187318;
+  max-width: 80%;
+  height: 80%;
+  font-size: 24px;
+  text-align: center;
+  border: none;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
+
+@media screen and (max-width: 1040px){
+ .square {
+   font-size: 36px;
+   height: 60px;
+   width: 75px;
+ } 
+}
+
+@media screen and (max-width: 700px){
+  .square {
+    font-size: 25px;
+    height: 34px;
+    width: 36px;
+  }
+}

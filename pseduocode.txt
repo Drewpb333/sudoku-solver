@@ -1,0 +1,1 @@
+Remove filled in squares and allow for squares to be all input squares
