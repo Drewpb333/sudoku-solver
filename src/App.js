@@ -14,11 +14,12 @@ class App extends Component {
   }
 
   createBoardArr = () =>{
-    let board = [[],[],[],[],[],[],[],[],[]];
+    let emptyBoard = [[],[],[],[],[],[],[],[],[]];
     let initialArray = [0,0,0,0,0,0,0,0,0];
-    board.forEach(x => [...initialArray]);
+    let initialBoard = emptyBoard.map(x => [...initialArray]);
+    console.log(initialBoard);
     this.setState({
-      board
+      board: initialBoard
     })
   };
 
@@ -83,12 +84,8 @@ class App extends Component {
 
   render() {
     const boards = {
-      originalUnsolvedBoard: this.state.originalUnsolvedBoard,
-      unsolvedBoard: this.state.board,
-      board: this.state.board,
-      differentialBoard: this.state.differentialBoard
+      board: this.state.board
     }
-    console.log(this.state.board);
     return (
       <div className="App">
         <Header/>      
