@@ -6,7 +6,7 @@ import Card from './Card/Card';
 class App extends Component {
   state = {
     board: [],
-    unsolvedBoard: [],
+    updatedBoard: [],
     //for persisting original state in Square components
     originalUnsolvedBoard: [],
     //for displaying correct and incorrect inputs
@@ -17,43 +17,24 @@ class App extends Component {
     let emptyBoard = [[],[],[],[],[],[],[],[],[]];
     let initialArray = [0,0,0,0,0,0,0,0,0];
     let initialBoard = emptyBoard.map(x => [...initialArray]);
-    console.log(initialBoard);
     this.setState({
-      board: initialBoard
+      board: initialBoard,
+      updatedBoard: initialBoard
     })
   };
-
-  //adds input boxes for blank spaces
-  // createUnsolvedBoard = board => {
-  //   let unsolvedBoard = board.map((val, i)=>{
-  //     return [...board[i]];
-  //   });
-  //   let originalUnsolvedBoard = board.map((val, i)=>{
-  //     return[...board[i]];
-  //   });
-  //   const emptySquares = this.determineEmptySquares();
-  //   //removes three to five input values
-  //   for(let q = 0; q < unsolvedBoard.length; q++){
-  //     const y = Math.floor(Math.random() * emptySquares[0]) + emptySquares[1];
-  //     for(let j = 0; j < y; j++){
-  //       const rand = Math.floor(Math.random() * 9);
-  //       unsolvedBoard[q][rand] = 0;
-  //       originalUnsolvedBoard[q][rand] = 0;
-  //     }
-  //   }
-  //   return [unsolvedBoard, originalUnsolvedBoard];
-  // }
 
   //input is array equal to value, row, and column of number
   handleInput = input=>{
     const value = parseInt(input[0]);
+    console.log(input);
     const row = input[1];
     const column = input[2];
     this.setState(prevState=>{
-      const unsolvedBoard = prevState.unsolvedBoard;
-      unsolvedBoard[row][column] = value;
-      return {unsolvedBoard};
+      const updatedBoard = prevState.updatedBoard;
+      updatedBoard[row][column] = value;
+      return {updatedBoard};
     });
+    console.log(this.state.updatedBoard);
   }
 
   // puzzleSolvedHandler = () =>{
