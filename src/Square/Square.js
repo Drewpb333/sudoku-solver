@@ -10,24 +10,10 @@ const Square = props=> {
     // let correctInput;
     let inputCSS = "input-square";
     let squareBackground = {};
-    // if(props.boards.differentialBoard[0]){
-    //     correctInput = props.boards.differentialBoard[row][column] === false? false: true;
-    //     inputCSS = correctInput? "correct-input-square": "incorrect-input-square";
-    //     squareBackground = correctInput? {"background": "#bdf3bd"} :{"background": "#ec5b5b"};
-    // }    
-
     //checks original unsolved array to see if value is 0
-    let display;
-    // const {originalUnsolvedBoard} = props.boards;
-    // if(originalUnsolvedBoard[row][column] !== 0){
-    //     display = props.value;
-    // }
-    // else{
-    //     display = <input type="text" className={inputCSS} onChange={e=> props.handleInput([e.target.value, row, column])}></input>
-    // }
-
-    display = <input type="text" className={inputCSS} onChange={e=> props.handleInput([e.target.value, row, column])}></input>
-
+    let inputDisplay;
+    inputDisplay = <input type="text" className={inputCSS} onChange={e=> props.handleInput([e.target.value, row, column])}></input>
+    let display = props.value > 0 && props.value <= 9 && props.solved? props.value: inputDisplay;
 
     return (
         <td className="square" style={display !== props.value? squareBackground:{}} id={props.id}>

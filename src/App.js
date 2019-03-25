@@ -10,7 +10,8 @@ class App extends Component {
     //for persisting original state in Square components
     originalUnsolvedBoard: [],
     //for displaying correct and incorrect inputs
-    solvedPuzzle: []
+    solvedPuzzle: [],
+    solved: false
   }
 
   createBoardArr = () =>{
@@ -21,44 +22,20 @@ class App extends Component {
       board: initialBoard,
       updatedBoard: initialBoard
     })
-  };
+  }
 
   //input is array equal to value, row, and column of number
   handleInput = input=>{
     const value = parseInt(input[0]);
-    console.log(input);
     const row = input[1];
     const column = input[2];
     this.setState(prevState=>{
       const updatedBoard = prevState.updatedBoard;
       updatedBoard[row][column] = value;
-      return {updatedBoard};
+      return updatedBoard;
     });
-    console.log(this.state.updatedBoard);
+    // console.log(this.state.updatedBoard);
   }
-
-  // puzzleSolvedHandler = () =>{
-  //   let solved = true;
-  //   const solvedBoard = this.state.board;
-  //   const unsolvedBoard = this.state.unsolvedBoard;
-  //   const differentialBoard = this.state.unsolvedBoard.map(x=>[...x]);
-  //   for(let i = 0; i < solvedBoard.length; i++){
-  //     for(let j = 0; j < solvedBoard[i].length; j++){
-  //       if(solvedBoard[i][j] !== unsolvedBoard[i][j]) {
-  //         solved = false;
-  //         differentialBoard[i][j] = false;
-  //       }
-  //     }
-  //   }
-  //   this.setState({differentialBoard});
-  //   if(solved){
-  //     alert("Congrats! You Won!");
-  //   }
-  //   else{
-  //     alert("Keep trying");
-  //   }
-  // }
-
   puzzleSolvedHandler = () => {
     let puzzle = this.state.updatedBoard;
     const valid = (x, y) => {
@@ -70,21 +47,24 @@ class App extends Component {
           v.push(puzzle[3 * Math.floor(x / 3) + i][3 * Math.floor(y / 3) + j])
         }
       }
-      return [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(e => v.indexOf(e) == -1)
+      return [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(e => v.indexOf(e) === -1)
     }
     const rec = (x, y) => {
-      if (y == 9) {
+      if (y === 9) {
         return puzzle
-      } else if (!puzzle[x][y]) {
+      } 
+      else if (!puzzle[x][y]) {
         const correct = valid(x, y).some(i => {
           puzzle[x][y] = i;
-          return rec((x + 1) % 9, y + (x == 9 ? 1 : 0))
-        })
-        if (correct)
-          console.log(puzzle);
+          return rec((x + 1) % 9, y + (x === 9 ? 1 : 0))
+        });
+        if (correct){
+          this.setState({solved: true});
           return puzzle;
-      } else {
-        return rec((x + 1) % 9, y + (x == 8 ? 1 : 0))
+        }
+      } 
+      else {
+        return rec((x + 1) % 9, y + (x === 8 ? 1 : 0))
       }
     }
     return rec(0, 0)
@@ -96,7 +76,8 @@ class App extends Component {
 
   render() {
     const boards = {
-      board: this.state.board
+      board: this.state.board,
+      solved: this.state.solved
     }
     return (
       <div className="App">
