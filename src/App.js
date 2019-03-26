@@ -7,8 +7,6 @@ class App extends Component {
   state = {
     board: [],
     updatedBoard: [],
-    //for persisting original state in Square components
-    originalUnsolvedBoard: [],
     //for displaying correct and incorrect inputs
     solvedPuzzle: [],
     solved: false
@@ -34,8 +32,9 @@ class App extends Component {
       updatedBoard[row][column] = value;
       return updatedBoard;
     });
-    // console.log(this.state.updatedBoard);
+    console.log(this.state.updatedBoard);
   }
+
   puzzleSolvedHandler = () => {
     let puzzle = this.state.updatedBoard;
     const valid = (x, y) => {
@@ -47,24 +46,26 @@ class App extends Component {
           v.push(puzzle[3 * Math.floor(x / 3) + i][3 * Math.floor(y / 3) + j])
         }
       }
-      return [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(e => v.indexOf(e) === -1)
+      return [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(e => v.indexOf(e) == -1)
     }
     const rec = (x, y) => {
-      if (y === 9) {
+      if (y == 9) {
+        console.log(this.state.updatedBoard);
+        this.setState({
+          updatedBoard: puzzle,
+          solved: true
+        })
         return puzzle
-      } 
-      else if (!puzzle[x][y]) {
+      } else if (!puzzle[x][y]) {
         const correct = valid(x, y).some(i => {
           puzzle[x][y] = i;
-          return rec((x + 1) % 9, y + (x === 9 ? 1 : 0))
-        });
-        if (correct){
-          this.setState({solved: true});
+          return rec((x + 1) % 9, y + (x == 9 ? 1 : 0))
+        })
+        if (correct)
           return puzzle;
-        }
-      } 
-      else {
-        return rec((x + 1) % 9, y + (x === 8 ? 1 : 0))
+        puzzle[x][y] = 0;
+      } else {
+        return rec((x + 1) % 9, y + (x == 8 ? 1 : 0))
       }
     }
     return rec(0, 0)
@@ -79,6 +80,7 @@ class App extends Component {
       board: this.state.board,
       solved: this.state.solved
     }
+    
     return (
       <div className="App">
         <Header/>      
