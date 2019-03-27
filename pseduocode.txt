@@ -1,7 +1,0 @@
-Remove filled in squares and allow for squares to be all input squares
-When solve button is clicked, the input values will be converted to an array
-If an input has a value not equal to or not between 0 and 9, an input error will pop up, and an input css
-    error class will be applied to specified input squares
-Empty input squares will be assigned a zero in the initial sudoku array
-Array will then be passed to sudoku-solver algorithm
-
